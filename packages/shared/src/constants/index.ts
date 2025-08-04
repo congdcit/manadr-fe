@@ -1,0 +1,52 @@
+// API Constants
+export const API_CONFIG = {
+  TIMEOUT: 30000,
+  RETRY_ATTEMPTS: 3,
+  RETRY_DELAY: 1000,
+} as const;
+
+// Application Constants
+export const APP_CONFIG = {
+  APP_NAME: 'Manadr',
+  VERSION: '1.0.0',
+  ENVIRONMENT: (process.env['NODE_ENV'] as string) || 'development',
+} as const;
+
+// Validation Constants
+export const VALIDATION = {
+  PASSWORD_MIN_LENGTH: 8,
+  PASSWORD_MAX_LENGTH: 128,
+  USERNAME_MIN_LENGTH: 3,
+  USERNAME_MAX_LENGTH: 50,
+  EMAIL_MAX_LENGTH: 254,
+} as const;
+
+// HTTP Status Codes
+export const HTTP_STATUS = {
+  OK: 200,
+  CREATED: 201,
+  NO_CONTENT: 204,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  INTERNAL_SERVER_ERROR: 500,
+} as const;
+
+// Local Storage Keys
+export const STORAGE_KEYS = {
+  AUTH_TOKEN: 'auth_token',
+  REFRESH_TOKEN: 'refresh_token',
+  USER_PREFERENCES: 'user_preferences',
+  LANGUAGE: 'language',
+  THEME: 'theme',
+} as const;
+
+// Date Format Constants
+export const DATE_FORMATS = {
+  DATE_ONLY: 'YYYY-MM-DD',
+  DATETIME: 'YYYY-MM-DD HH:mm:ss',
+  TIME_ONLY: 'HH:mm:ss',
+  DISPLAY_DATE: 'DD/MM/YYYY',
+  DISPLAY_DATETIME: 'DD/MM/YYYY HH:mm',
+} as const;

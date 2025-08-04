@@ -35,7 +35,7 @@ export interface PayloadError {
 }
 
 // Pagination types
-export interface IPaginationParams {
+export interface IParams {
   page?: number;
   pageSize?: number;
   search?: string;
