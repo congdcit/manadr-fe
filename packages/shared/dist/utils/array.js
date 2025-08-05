@@ -34,7 +34,7 @@ const deepClone = (obj) => {
 };
 exports.deepClone = deepClone;
 const omit = (obj, keys) => {
-    const result = { ...obj };
+    const result = Object.assign({}, obj);
     keys.forEach((key) => {
         delete result[key];
     });
@@ -55,7 +55,7 @@ exports.pick = pick;
 const mergeTwoArray = (des, source, key = 'key') => {
     const result = des.map((item) => {
         const itemSource = source.find((i) => i[key] === item[key]);
-        return itemSource ?? item;
+        return itemSource !== null && itemSource !== void 0 ? itemSource : item;
     });
     return result;
 };
@@ -68,7 +68,7 @@ function uniqueOptionsByCode(options) {
 }
 const mergeObjectFalsy = (A, B) => {
     const res = {};
-    Object.keys({ ...A, ...B }).forEach((key) => {
+    Object.keys(Object.assign(Object.assign({}, A), B)).forEach((key) => {
         res[key] = B[key] || A[key];
     });
     return res;

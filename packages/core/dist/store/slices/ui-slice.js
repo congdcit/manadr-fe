@@ -27,10 +27,7 @@ exports.uiSlice = (0, toolkit_1.createSlice)({
             state.loading = action.payload;
         },
         addNotification: (state, action) => {
-            const notification = {
-                ...action.payload,
-                id: Date.now().toString(),
-            };
+            const notification = Object.assign(Object.assign({}, action.payload), { id: Date.now().toString() });
             state.notifications.push(notification);
         },
         removeNotification: (state, action) => {

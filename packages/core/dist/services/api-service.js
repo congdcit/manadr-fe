@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -7,8 +16,6 @@ exports.ApiService = void 0;
 const axios_1 = __importDefault(require("axios"));
 const interceptors_1 = require("./interceptors");
 class ApiService {
-    axiosInstance;
-    baseURL;
     constructor(baseURL) {
         this.baseURL = baseURL;
         this.axiosInstance = axios_1.default.create({
@@ -21,39 +28,51 @@ class ApiService {
         (0, interceptors_1.setupInterceptors)(this.axiosInstance);
     }
     // GET request
-    async get(url, config) {
-        const response = await this.axiosInstance.get(url, config);
-        return response.data;
+    get(url, config) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.axiosInstance.get(url, config);
+            return response.data;
+        });
     }
     // POST request
-    async post(url, data, config) {
-        const response = await this.axiosInstance.post(url, data, config);
-        return response.data;
+    post(url, data, config) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.axiosInstance.post(url, data, config);
+            return response.data;
+        });
     }
     // PUT request
-    async put(url, data, config) {
-        const response = await this.axiosInstance.put(url, data, config);
-        return response.data;
+    put(url, data, config) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.axiosInstance.put(url, data, config);
+            return response.data;
+        });
     }
     // PATCH request
-    async patch(url, data, config) {
-        const response = await this.axiosInstance.patch(url, data, config);
-        return response.data;
+    patch(url, data, config) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.axiosInstance.patch(url, data, config);
+            return response.data;
+        });
     }
     // DELETE request
-    async delete(url, config) {
-        const response = await this.axiosInstance.delete(url, config);
-        return response.data;
+    delete(url, config) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.axiosInstance.delete(url, config);
+            return response.data;
+        });
     }
     // Upload file
-    async upload(url, formData, onProgress) {
-        const response = await this.axiosInstance.post(url, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-            onUploadProgress: onProgress,
+    upload(url, formData, onProgress) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.axiosInstance.post(url, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                onUploadProgress: onProgress,
+            });
+            return response.data;
         });
-        return response.data;
     }
 }
 exports.ApiService = ApiService;
