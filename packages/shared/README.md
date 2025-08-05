@@ -1,178 +1,114 @@
 # @manadr/shared
 
-Shared package chứa các utilities, types, constants và functions có thể tái sử dụng trong toàn bộ hệ thống Manadr applications.
+Package shared chứa các utilities, types và constants dùng chung cho tất cả ứng dụng Manadr.
 
 ## Cài đặt
 
-Trong monorepo này, package sẽ được tự động link thông qua workspace. Để sử dụng trong một app, thêm vào `package.json`:
-
-```json
-{
-  "dependencies": {
-    "@manadr/shared": "*"
-  }
-}
+```bash
+npm install @manadr/shared
 ```
 
-## Cách sử dụng
+hoặc
 
-### Constants
-
-```typescript
-import { API_CONFIG, STORAGE_KEYS, DATE_FORMATS } from '@manadr/shared/constants';
-
-// Sử dụng API config
-const timeout = API_CONFIG.TIMEOUT;
-
-// Storage keys
-localStorage.setItem(STORAGE_KEYS.AUTH_TOKEN, token);
-
-// Date formats
-const formattedDate = dayjs().format(DATE_FORMATS.DISPLAY_DATE);
+```bash
+yarn add @manadr/shared
 ```
+
+## Sử dụng
 
 ### Types
 
 ```typescript
-import { ApiResponse, User, PaginatedResponse } from '@manadr/shared/types';
+import { Patient, Doctor, Company } from '@manadr/shared/types';
 
-// API response typing
-const handleResponse = (response: ApiResponse<User[]>) => {
-  // response.data sẽ có type User[]
-};
-
-// Paginated data
-const handlePaginatedData = (data: PaginatedResponse<User>) => {
-  // data.data sẽ có type User[]
-  // data.total, data.page, etc. có sẵn
+// Sử dụng các type definitions
+const patient: Patient = {
+  id: '123',
+  firstName: 'Nguyễn',
+  lastName: 'Văn A',
+  // ... other properties
 };
 ```
 
 ### Utilities
 
 ```typescript
-import { 
-  capitalize, 
-  formatCurrency, 
-  chunk, 
-  deepClone,
-  delay,
-  generateId 
-} from '@manadr/shared/utils';
+import { formatDate, isValidDate, addDays } from '@manadr/shared/utils';
 
-// String utilities
-const title = capitalize('hello world'); // "Hello world"
-
-// Number utilities  
-const price = formatCurrency(1000000); // "1.000.000 ₫"
+// Date utilities
+const formattedDate = formatDate(new Date(), 'DD/MM/YYYY');
+const isValid = isValidDate('2024-01-01');
+const futureDate = addDays(new Date(), 7);
 
 // Array utilities
-const chunks = chunk([1,2,3,4,5], 2); // [[1,2], [3,4], [5]]
+import { groupBy, unique, chunk } from '@manadr/shared/utils';
 
-// Object utilities
-const cloned = deepClone(complexObject);
+const grouped = groupBy(items, 'category');
+const uniqueItems = unique(array);
+const chunkedArray = chunk(largeArray, 10);
 
-// Async utilities
-await delay(1000); // Wait 1 second
-const id = generateId(); // Random 8-character ID
+// Query string utilities
+import { parseQueryString, stringifyQueryString } from '@manadr/shared/utils';
+
+const params = parseQueryString('?name=john&age=30');
+const queryString = stringifyQueryString({ name: 'john', age: 30 });
 ```
 
-### Validators
+### Constants
 
 ```typescript
-import { 
-  emailSchema, 
-  passwordSchema, 
-  loginSchema,
-  isValidEmail,
-  isValidVietnamesePhone 
-} from '@manadr/shared/validators';
+import { API_ENDPOINTS, ERROR_MESSAGES } from '@manadr/shared/constants';
 
-// Zod schema validation
-const loginResult = loginSchema.safeParse({
-  email: 'user@example.com',
-  password: 'password123'
-});
-
-if (loginResult.success) {
-  // loginResult.data có type LoginFormData
-}
-
-// Quick validation functions
-const isEmail = isValidEmail('test@example.com'); // boolean
-const isVnPhone = isValidVietnamesePhone('0123456789'); // boolean
+// Sử dụng constants
+const userEndpoint = API_ENDPOINTS.USERS;
+const errorMsg = ERROR_MESSAGES.VALIDATION_FAILED;
 ```
 
-### Formatters
+## Cấu trúc Types
 
-```typescript
-import { 
-  formatDate, 
-  formatTimeAgo, 
-  formatVND,
-  formatPhoneDisplay,
-  maskEmail 
-} from '@manadr/shared/formatters';
+### IAM (Identity & Access Management)
 
-// Date formatting
-const date = formatDate(new Date()); // "01/01/2024"
-const timeAgo = formatTimeAgo(new Date()); // "5 phút trước"
+- `Patient` - Thông tin bệnh nhân
+- `Doctor` - Thông tin bác sĩ  
+- `Company` - Thông tin công ty
+- `Address` - Thông tin địa chỉ
+- `Tag` - Thông tin tag/nhãn
 
-// Currency formatting
-const amount = formatVND(1500000); // "1.500.000 ₫"
+### File Types
 
-// Phone formatting
-const phone = formatPhoneDisplay('0123456789'); // "0123 456 789"
+- `FileUpload` - Interface cho file upload
+- `FileMetadata` - Metadata của file
 
-// Privacy formatting
-const maskedEmail = maskEmail('user@example.com'); // "u***@example.com"
-```
+### Corporation Types
 
-## Cấu trúc Package
+- `Corporation` - Thông tin tập đoàn
 
-```
-packages/shared/
-├── src/
-│   ├── constants/     # Application constants
-│   ├── types/         # Shared TypeScript types
-│   ├── utils/         # Utility functions
-│   ├── validators/    # Zod validation schemas
-│   ├── formatters/    # Data formatting functions
-│   └── index.ts       # Main exports
-├── package.json
-├── tsconfig.json
-├── eslint.config.mjs
-└── README.md
-```
+## Utilities Available
+
+### Date Utils
+- `formatDate()` - Format ngày tháng
+- `isValidDate()` - Kiểm tra ngày hợp lệ
+- `addDays()`, `subtractDays()` - Thêm/bớt ngày
+- `getDaysBetween()` - Tính số ngày giữa 2 mốc thời gian
+
+### Array Utils
+- `groupBy()` - Nhóm array theo thuộc tính
+- `unique()` - Loại bỏ phần tử trùng lặp
+- `chunk()` - Chia array thành các phần nhỏ
+
+### Query String Utils
+- `parseQueryString()` - Parse query string thành object
+- `stringifyQueryString()` - Chuyển object thành query string
 
 ## Phát triển
 
-### Thêm utility mới
+```bash
+# Build package
+npm run build
 
-1. Tạo function trong thư mục tương ứng
-2. Export từ `index.ts` của thư mục đó
-3. Cập nhật main `index.ts` nếu cần
-4. Viết test nếu cần thiết
+# Lint code
+npm run lint
 
-### Thêm type mới
-
-1. Định nghĩa trong `src/types/index.ts`
-2. Export từ main `index.ts`
-3. Đảm bảo type an toàn với TypeScript strict mode
-
-### Thêm validator mới
-
-1. Tạo Zod schema trong `src/validators/index.ts`
-2. Tạo helper function nếu cần
-3. Export type từ schema với `z.infer<>`
-
-## Dependencies
-
-- `zod`: Schema validation
-- `dayjs`: Date manipulation and formatting
-
-## Scripts
-
-- `yarn lint`: Chạy ESLint
-- `yarn check-types`: Kiểm tra TypeScript
-- `yarn build`: Build package
+# Type checking
+npm run check-types
+```

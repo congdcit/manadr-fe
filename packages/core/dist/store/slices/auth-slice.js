@@ -1,8 +1,4 @@
-"use strict";
-var _a;
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.clearError = exports.logout = exports.loginFailure = exports.loginSuccess = exports.loginStart = exports.authSlice = void 0;
-const toolkit_1 = require("@reduxjs/toolkit");
+import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     isAuthenticated: false,
     user: null,
@@ -10,7 +6,7 @@ const initialState = {
     isLoading: false,
     error: null,
 };
-exports.authSlice = (0, toolkit_1.createSlice)({
+export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
@@ -44,4 +40,4 @@ exports.authSlice = (0, toolkit_1.createSlice)({
         },
     },
 });
-_a = exports.authSlice.actions, exports.loginStart = _a.loginStart, exports.loginSuccess = _a.loginSuccess, exports.loginFailure = _a.loginFailure, exports.logout = _a.logout, exports.clearError = _a.clearError;
+export const { loginStart, loginSuccess, loginFailure, logout, clearError } = authSlice.actions;

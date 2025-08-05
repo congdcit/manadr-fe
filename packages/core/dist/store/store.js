@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.store = void 0;
-const toolkit_1 = require("@reduxjs/toolkit");
-exports.store = (0, toolkit_1.configureStore)({
+import { configureStore } from '@reduxjs/toolkit';
+export const store = configureStore({
     reducer: {},
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: {

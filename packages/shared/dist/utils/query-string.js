@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.parseQueryString = exports.buildQueryString = void 0;
 // URL utilities
-const buildQueryString = (params) => {
+export const buildQueryString = (params) => {
     const searchParams = new URLSearchParams();
     Object.entries(params).forEach(([key, value]) => {
         if (value !== null && value !== undefined) {
@@ -11,8 +8,7 @@ const buildQueryString = (params) => {
     });
     return searchParams.toString();
 };
-exports.buildQueryString = buildQueryString;
-const parseQueryString = (queryString) => {
+export const parseQueryString = (queryString) => {
     const params = new URLSearchParams(queryString);
     const result = {};
     params.forEach((value, key) => {
@@ -20,4 +16,3 @@ const parseQueryString = (queryString) => {
     });
     return result;
 };
-exports.parseQueryString = parseQueryString;

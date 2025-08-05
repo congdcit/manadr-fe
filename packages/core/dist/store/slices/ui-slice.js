@@ -1,8 +1,4 @@
-"use strict";
-var _a;
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.closeAllModals = exports.closeModal = exports.openModal = exports.clearNotifications = exports.removeNotification = exports.addNotification = exports.setLoading = exports.setSidebarCollapsed = exports.toggleSidebar = exports.setTheme = exports.uiSlice = void 0;
-const toolkit_1 = require("@reduxjs/toolkit");
+import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     theme: 'light',
     sidebarCollapsed: false,
@@ -10,7 +6,7 @@ const initialState = {
     notifications: [],
     modals: {},
 };
-exports.uiSlice = (0, toolkit_1.createSlice)({
+export const uiSlice = createSlice({
     name: 'ui',
     initialState,
     reducers: {
@@ -27,7 +23,10 @@ exports.uiSlice = (0, toolkit_1.createSlice)({
             state.loading = action.payload;
         },
         addNotification: (state, action) => {
-            const notification = Object.assign(Object.assign({}, action.payload), { id: Date.now().toString() });
+            const notification = {
+                ...action.payload,
+                id: Date.now().toString(),
+            };
             state.notifications.push(notification);
         },
         removeNotification: (state, action) => {
@@ -47,4 +46,4 @@ exports.uiSlice = (0, toolkit_1.createSlice)({
         },
     },
 });
-_a = exports.uiSlice.actions, exports.setTheme = _a.setTheme, exports.toggleSidebar = _a.toggleSidebar, exports.setSidebarCollapsed = _a.setSidebarCollapsed, exports.setLoading = _a.setLoading, exports.addNotification = _a.addNotification, exports.removeNotification = _a.removeNotification, exports.clearNotifications = _a.clearNotifications, exports.openModal = _a.openModal, exports.closeModal = _a.closeModal, exports.closeAllModals = _a.closeAllModals;
+export const { setTheme, toggleSidebar, setSidebarCollapsed, setLoading, addNotification, removeNotification, clearNotifications, openModal, closeModal, closeAllModals, } = uiSlice.actions;

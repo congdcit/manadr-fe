@@ -1,13 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useLocalStorage = useLocalStorage;
-const react_1 = require("react");
-const storage_service_1 = require("../services/storage-service");
-function useLocalStorage(key, initialValue) {
+import { useState, useEffect } from 'react';
+import { storageService } from '../services/storage-service';
+export function useLocalStorage(key, initialValue) {
     // Read value from localStorage
-    const [storedValue, setStoredValue] = (0, react_1.useState)(() => {
+    const [storedValue, setStoredValue] = useState(() => {
         try {
-            const item = storage_service_1.storageService.get(key);
+            const item = storageService.get(key);
             return item !== null ? item : initialValue;
         }
         catch (error) {
@@ -21,7 +18,7 @@ function useLocalStorage(key, initialValue) {
             // Allow value to be a function so we can update based on previous value
             const valueToStore = value instanceof Function ? value(storedValue) : value;
             setStoredValue(valueToStore);
-            storage_service_1.storageService.set(key, valueToStore);
+            storageService.set(key, valueToStore);
         }
         catch (error) {
             console.error(`Error setting localStorage key "${key}":`, error);
@@ -31,14 +28,14 @@ function useLocalStorage(key, initialValue) {
     const removeValue = () => {
         try {
             setStoredValue(initialValue);
-            storage_service_1.storageService.remove(key);
+            storageService.remove(key);
         }
         catch (error) {
             console.error(`Error removing localStorage key "${key}":`, error);
         }
     };
     // Listen for changes to this localStorage key from other tabs/windows
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         const handleStorageChange = (e) => {
             if (e.key === key && e.newValue !== null) {
                 try {

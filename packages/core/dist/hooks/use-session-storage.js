@@ -1,13 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useSessionStorage = useSessionStorage;
-const react_1 = require("react");
-const storage_service_1 = require("../services/storage-service");
-function useSessionStorage(key, initialValue) {
+import { useState } from 'react';
+import { storageService } from '../services/storage-service';
+export function useSessionStorage(key, initialValue) {
     // Read value from sessionStorage
-    const [storedValue, setStoredValue] = (0, react_1.useState)(() => {
+    const [storedValue, setStoredValue] = useState(() => {
         try {
-            const item = storage_service_1.storageService.get(key, 'sessionStorage');
+            const item = storageService.get(key, 'sessionStorage');
             return item !== null ? item : initialValue;
         }
         catch (error) {
@@ -21,7 +18,7 @@ function useSessionStorage(key, initialValue) {
             // Allow value to be a function so we can update based on previous value
             const valueToStore = value instanceof Function ? value(storedValue) : value;
             setStoredValue(valueToStore);
-            storage_service_1.storageService.set(key, valueToStore, 'sessionStorage');
+            storageService.set(key, valueToStore, 'sessionStorage');
         }
         catch (error) {
             console.error(`Error setting sessionStorage key "${key}":`, error);
@@ -31,7 +28,7 @@ function useSessionStorage(key, initialValue) {
     const removeValue = () => {
         try {
             setStoredValue(initialValue);
-            storage_service_1.storageService.remove(key, 'sessionStorage');
+            storageService.remove(key, 'sessionStorage');
         }
         catch (error) {
             console.error(`Error removing sessionStorage key "${key}":`, error);

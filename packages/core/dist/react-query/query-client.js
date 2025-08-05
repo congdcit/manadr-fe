@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.queryClient = void 0;
-const react_query_1 = require("@tanstack/react-query");
-exports.queryClient = new react_query_1.QueryClient({
+import { QueryClient } from '@tanstack/react-query';
+export const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
             // Cache data for 5 minutes
@@ -12,14 +9,14 @@ exports.queryClient = new react_query_1.QueryClient({
             // Retry logic
             retry: (failureCount, error) => {
                 // Don't retry on 4xx client errors
-                if ((error === null || error === void 0 ? void 0 : error.status) >= 400 && (error === null || error === void 0 ? void 0 : error.status) < 500) {
+                if (error?.status >= 400 && error?.status < 500) {
                     return false;
                 }
                 // Retry max 3 times for other errors
                 return failureCount < 3;
             },
             // Delay between retries
-            retryDelay: (attemptIndex) => Math.min(1000 * Math.pow(2, attemptIndex), 30000),
+            retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
             // Refetch on window focus
             refetchOnWindowFocus: false,
             // Refetch on reconnect

@@ -1,9 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReduxProvider = ReduxProvider;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const react_redux_1 = require("react-redux");
-const store_1 = require("../store");
-function ReduxProvider({ children }) {
-    return (0, jsx_runtime_1.jsx)(react_redux_1.Provider, { store: store_1.store, children: children });
+import { jsx as _jsx } from "react/jsx-runtime";
+import { Provider } from 'react-redux';
+import { store } from '../store';
+export function ReduxProvider({ children }) {
+    return _jsx(Provider, { store: store, children: children });
 }

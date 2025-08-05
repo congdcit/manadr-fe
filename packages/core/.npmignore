@@ -1,0 +1,32 @@
+# Source files
+src/
+tsconfig.json
+eslint.config.mjs
+
+# Development files
+*.log
+.env*
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+coverage/
+*.test.*
+*.spec.*
+
+# Build artifacts (except dist)
+.turbo/
+.next/
+build/
+
+# Package manager
+node_modules/
+yarn.lock
+package-lock.json
+pnpm-lock.yaml

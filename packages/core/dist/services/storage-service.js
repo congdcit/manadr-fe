@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.storageService = void 0;
 class StorageService {
     // Get storage instance
     getStorage(type) {
@@ -110,4 +107,4 @@ class StorageService {
         return item.value;
     }
 }
-exports.storageService = new StorageService();
+export const storageService = new StorageService();
