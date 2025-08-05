@@ -1,0 +1,1 @@
+{"version":3,"file":"app-provider.d.ts","sourceRoot":"","sources":["../../src/providers/app-provider.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvC,UAAU,gBAAgB;IACxB,QAAQ,EAAE,SAAS,CAAC;IACpB,sBAAsB,CAAC,EAAE,OAAO,CAAC;CAClC;AAED,wBAAgB,WAAW,CAAC,EAAE,QAAQ,EAAE,sBAAsB,EAAE,EAAE,gBAAgB,2CAEjF"}

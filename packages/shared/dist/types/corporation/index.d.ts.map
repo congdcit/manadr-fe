@@ -1,0 +1,1 @@
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/types/corporation/index.ts"],"names":[],"mappings":"AAAA,oBAAY,4BAA4B;IACtC,KAAK,UAAU;IACf,OAAO,YAAY;CACpB;AAED,MAAM,WAAW,uBAAuB;IACtC,aAAa,EAAE,MAAM,CAAC;IACtB,eAAe,CAAC,EAAE,MAAM,CAAC;IACzB,MAAM,EAAE,4BAA4B,CAAC;IACrC,CAAC,GAAG,EAAE,MAAM,GAAG,OAAO,CAAC;CACxB"}

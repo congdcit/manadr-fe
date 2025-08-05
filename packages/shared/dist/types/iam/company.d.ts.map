@@ -1,0 +1,1 @@
+{"version":3,"file":"company.d.ts","sourceRoot":"","sources":["../../../src/types/iam/company.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,SAAS,CAAC;AAEhC,MAAM,WAAW,QAAQ;IACvB,EAAE,EAAE,MAAM,CAAC;IACX,IAAI,EAAE,MAAM,CAAC;IACb,SAAS,EAAE,MAAM,CAAC;IAClB,MAAM,EAAE,KAAK,CAAC;CACf"}

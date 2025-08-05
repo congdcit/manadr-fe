@@ -1,0 +1,1 @@
+{"version":3,"file":"redux-provider.d.ts","sourceRoot":"","sources":["../../src/providers/redux-provider.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAGvC,UAAU,kBAAkB;IAC1B,QAAQ,EAAE,SAAS,CAAC;CACrB;AAED,wBAAgB,aAAa,CAAC,EAAE,QAAQ,EAAE,EAAE,kBAAkB,2CAE7D"}
